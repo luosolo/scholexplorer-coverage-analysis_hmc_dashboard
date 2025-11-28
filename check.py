@@ -2,6 +2,7 @@ import csv
 import requests
 import json
 
+
 scholexplorer_domain = "https://api.scholexplorer.openaire.eu/"
 
 def read_csv(file_path):
@@ -30,7 +31,7 @@ def check_stats_no_scholix_but_datacite():
             "Literature_PID": item['Literature_PID'],
             "DataCite_RelationType_of_Dataset_PID_record": item['DataCite_RelationType_of_Dataset_PID_record'],
             "links_in_scholix": links_in_scholix,
-            "url_to_scholix": method_path,
+            "url_to_scholix": scholix_url,
         }
         stats.append(current_stats)
         print(json.dumps(current_stats, indent=2))
@@ -59,7 +60,7 @@ def check_stats_no_scholix_no_datacite():
             "Dataset_PID": item['Dataset_PID'],
             "Literature_PID": item['Literature_PID'],
             "links_in_scholix": links_in_scholix,
-            "url_to_scholix": method_path,
+            "url_to_scholix": scholix_url,
         }
         stats.append(current_stats)
         print(json.dumps(current_stats, indent=2))
@@ -76,8 +77,8 @@ def check_stats_no_scholix_no_datacite():
         print(f"Wrote {len(stats)} rows to {out_path}")
 
 
-# chack_stats_no_scholix_but_datacite()
-# check_stats_no_scholix_no_datacite()
+check_stats_no_scholix_but_datacite()
+check_stats_no_scholix_no_datacite()
 
 total_rows = 0
 
